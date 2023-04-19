@@ -7,6 +7,7 @@ public class midterm {
 		Console con = new Console("The Puzzle Jungle", 1280, 720);
 
 		int intChoice;
+		String strChoice;
 
 		resetConsole(con);
 
@@ -30,8 +31,24 @@ public class midterm {
 			con.println("Invalid choice. Please try again.");
 			intChoice = con.readInt();
 		}	
+		resetConsole(con);
 		if (intChoice == 1) {
-			// TODO: Add scene 2
+			scene2(con);
+			con.println("==============================================================");
+			con.println("Enter [yes] if you want to provide the man your name.");
+			con.println("Enter [no] if you do not want to provide the man your name.");
+			con.println("==============================================================");
+			strChoice = con.readLine();
+			while (!strChoice.equalsIgnoreCase("yes") && !strChoice.equalsIgnoreCase("no")) {
+				con.println("Invalid choice. Please try again.");
+				strChoice = con.readLine();
+			}
+			resetConsole(con);
+			if (strChoice.equalsIgnoreCase("yes")) {
+				
+			} else if (strChoice.equalsIgnoreCase("no")) {
+				
+			}
 		} else if (intChoice == 2) {
 			// TODO: Add scene 3
 		}
@@ -67,6 +84,12 @@ public class midterm {
 		con.println("	Or will you choose to retreat to the safety and familiarity of your home?");
 		con.println("	The answer lies within you, waiting to be discovered.");		
 		con.println();
+		con.sleep(2000);
+	}
+	private static void scene2(Console con) {
+		con.println("As you walk down the path, a man emerges from the shadows.");
+		con.sleep(1000);
+		con.println("He introduces himself as a guide, and asks for your name.");
 		con.sleep(2000);
 	}
 }
