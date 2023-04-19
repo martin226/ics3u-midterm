@@ -11,6 +11,9 @@ public class midterm {
 		Font fntTitle = con.loadFont("fonts/Cousine-Regular.ttf", 16);
 		Font fntText = con.loadFont("fonts/NotoSans-Regular.ttf", 18);
 		Color clrGreekVilla = new Color(237, 234, 224);
+		
+		String strName;
+		int intDice;
 
 		resetConsole(con, clrGreekVilla);
 
@@ -46,7 +49,16 @@ public class midterm {
 			}
 			resetConsole(con, clrGreekVilla);
 			if (strChoice.equalsIgnoreCase("yes")) {
+				con.println("Enter your name:");
+				strName = con.readLine();
+				scene5(con, strName);
+				con.println("==============================================================");
+				con.println("Press any key to roll the dice.");
+				con.println("==============================================================");
+				con.getKey();
 				
+				intDice = rollDice();
+				con.println("You rolled a " + intDice + "!");
 			} else if (strChoice.equalsIgnoreCase("no")) {
 				scene4(con);
 				return;
@@ -70,6 +82,10 @@ public class midterm {
 		con.println("░░░██║░░░██║░░██║███████╗  ██║░░░░░╚██████╔╝███████╗███████╗███████╗███████╗  ╚█████╔╝╚██████╔╝██║░╚███║╚██████╔╝███████╗███████╗");
 		con.println("░░░╚═╝░░░╚═╝░░╚═╝╚══════╝  ╚═╝░░░░░░╚═════╝░╚══════╝╚══════╝╚══════╝╚══════╝  ░╚════╝░░╚═════╝░╚═╝░░╚══╝░╚═════╝░╚══════╝╚══════╝");
 		con.println("\n");
+	}
+	private static int rollDice() {
+		int intDice = (int)(Math.random() * 6 + 1);
+		return intDice;
 	}
 	private static void scene1(Console con) {
 		// TODO: Add scene image
@@ -105,5 +121,15 @@ public class midterm {
 		con.println("Eventually, you starve to death.");
 		con.sleep(2000);
 		con.println("\n-THE END-");
+	}
+	private static void scene5(Console con, String strName) {
+		con.println("\"Welcome to the Puzzle Jungle, " + strName + "\", the man says.");
+		con.sleep(1000);
+		con.println("He takes you through the thick foliage of the jungle, and you arrive at a vault.");
+		con.sleep(1000);
+		con.println("Next to the vault door is a glass box with a dice inside, and a red button underneath labelled \"ROLL\".");
+		con.sleep(1500);
+		con.println("Confused, you turn to the guide, but he has disappeared");
+		con.sleep(2000);
 	}
 }
