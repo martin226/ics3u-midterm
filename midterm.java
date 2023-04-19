@@ -55,14 +55,18 @@ public class midterm {
 	private static void scene1(Console con) {
 		// TODO: Add scene image
 		con.println("As you awaken, you find yourself in the heart of a dense jungle.");
-		con.println("Ahead of you lies a winding path that disappears into the distant horizon,");
-		con.println("beckoning you to follow its mysterious course.");
+		con.sleep(1000);
+		con.println("Ahead of you lies a winding path that disappears into the distant horizon, beckoning you to follow its mysterious course.");
+		con.sleep(1500);
 		con.println("Standing beside the path, a strange portal emanates a faint, familiar energy of home.");
+		con.sleep(1000);
 		con.println("And there, between the two, a weathered sign reads a cryptic message:\n");
+		con.sleep(1000);
 		con.println("	Will you dare to explore this unknown wilderness,");
 		con.println("	risking all for the promise of untold wealth and discovery?");
 		con.println("	Or will you choose to retreat to the safety and familiarity of your home?");
 		con.println("	The answer lies within you, waiting to be discovered.");		
 		con.println();
+		con.sleep(2000);
 	}
 }
