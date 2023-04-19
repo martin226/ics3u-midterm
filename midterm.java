@@ -8,17 +8,18 @@ public class midterm {
 
 		int intChoice;
 		String strChoice;
-
-		resetConsole(con);
-
 		Font fntTitle = con.loadFont("fonts/Cousine-Regular.ttf", 16);
+		Font fntText = con.loadFont("fonts/NotoSans-Regular.ttf", 18);
+		Color clrGreekVilla = new Color(237, 234, 224);
+
+		resetConsole(con, clrGreekVilla);
+
 		con.setTextFont(fntTitle);
 		printTitle(con);
 		con.println("Press any key to start...");
 		con.getKey();
-		resetConsole(con);
+		resetConsole(con, clrGreekVilla);
 
-		Font fntText = con.loadFont("fonts/NotoSans-Regular.ttf", 18);
 		con.setTextFont(fntText);
 		scene1(con);
 		con.println("==============================================================");
@@ -31,7 +32,7 @@ public class midterm {
 			con.println("Invalid choice. Please try again.");
 			intChoice = con.readInt();
 		}	
-		resetConsole(con);
+		resetConsole(con, clrGreekVilla);
 		if (intChoice == 1) {
 			scene2(con);
 			con.println("==============================================================");
@@ -43,7 +44,7 @@ public class midterm {
 				con.println("Invalid choice. Please try again.");
 				strChoice = con.readLine();
 			}
-			resetConsole(con);
+			resetConsole(con, clrGreekVilla);
 			if (strChoice.equalsIgnoreCase("yes")) {
 				
 			} else if (strChoice.equalsIgnoreCase("no")) {
@@ -55,11 +56,10 @@ public class midterm {
 			return;
 		}
 	}
-	private static void resetConsole(Console con) {
-		Color clrGreekVilla = new Color(237, 234, 224);
+	private static void resetConsole(Console con, Color clrBg) {
 		con.clear();
 		con.setTextColor(Color.BLACK);
-		con.setDrawColor(clrGreekVilla);
+		con.setDrawColor(clrBg);
 		con.fillRect(0,0,1280,720);
 	}
 	private static void printTitle(Console con) {
