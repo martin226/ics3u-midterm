@@ -25,10 +25,10 @@ public class midterm {
 
 		con.setTextFont(fntText);
 		scene1(con);
-		con.println("==============================================================");
+		con.println("\n==============================================================");
 		con.println("Enter [1] to follow the path into the jungle.");
 		con.println("Enter [2] to return home.");
-		con.println("==============================================================");
+		con.println("==============================================================\n");
 		intChoice = con.readInt();
 		// TODO: Input validation function that checks for errors as well
 		while (intChoice != 1 && intChoice != 2) {
@@ -38,28 +38,32 @@ public class midterm {
 		resetConsole(con, clrGreekVilla);
 		if (intChoice == 1) {
 			scene2(con);
-			con.println("==============================================================");
+			con.println("\n==============================================================");
 			con.println("Enter [yes] if you want to provide the man your name.");
 			con.println("Enter [no] if you do not want to provide the man your name.");
-			con.println("==============================================================");
+			con.println("==============================================================\n");
 			strChoice = con.readLine();
 			while (!strChoice.equalsIgnoreCase("yes") && !strChoice.equalsIgnoreCase("no")) {
 				con.println("Invalid choice. Please try again.");
 				strChoice = con.readLine();
 			}
-			resetConsole(con, clrGreekVilla);
 			if (strChoice.equalsIgnoreCase("yes")) {
+				con.println("\n==============================================================");
 				con.println("Enter your name:");
+				con.println("==============================================================\n");
 				strName = con.readLine();
+				resetConsole(con, clrGreekVilla);
+				
 				scene5(con, strName);
-				con.println("==============================================================");
+				con.println("\n==============================================================");
 				con.println("Press any key to roll the dice.");
-				con.println("==============================================================");
+				con.println("==============================================================\n");
 				con.getKey();
 				
 				intDice = rollDice();
 				con.println("You rolled a " + intDice + "!");
 			} else if (strChoice.equalsIgnoreCase("no")) {
+				resetConsole(con, clrGreekVilla);
 				scene4(con);
 				return;
 			}
@@ -100,8 +104,7 @@ public class midterm {
 		con.println("	Will you dare to explore this unknown wilderness,");
 		con.println("	risking all for the promise of untold wealth and discovery?");
 		con.println("	Or will you choose to retreat to the safety and familiarity of your home?");
-		con.println("	The answer lies within you, waiting to be discovered.");		
-		con.println();
+		con.println("	The answer lies within you, waiting to be discovered.");
 		con.sleep(2000);
 	}
 	private static void scene2(Console con) {
@@ -129,7 +132,7 @@ public class midterm {
 		con.sleep(1000);
 		con.println("Next to the vault door is a glass box with a dice inside, and a red button underneath labelled \"ROLL\".");
 		con.sleep(1500);
-		con.println("Confused, you turn to the guide, but he has disappeared");
+		con.println("Confused, you turn to the guide, but he has disappeared.");
 		con.sleep(2000);
 	}
 }
