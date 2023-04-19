@@ -50,7 +50,8 @@ public class midterm {
 				
 			}
 		} else if (intChoice == 2) {
-			// TODO: Add scene 3
+			scene3(con);
+			return;
 		}
 	}
 	private static void resetConsole(Console con) {
@@ -91,5 +92,10 @@ public class midterm {
 		con.sleep(1000);
 		con.println("He introduces himself as a guide, and asks for your name.");
 		con.sleep(2000);
+	}
+	private static void scene3(Console con) {
+		con.println("You return to the comfort of your home, empty-handed");
+		con.sleep(1000);
+		con.println("-THE END-");
 	}
 }
