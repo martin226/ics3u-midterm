@@ -47,7 +47,8 @@ public class midterm {
 			if (strChoice.equalsIgnoreCase("yes")) {
 				
 			} else if (strChoice.equalsIgnoreCase("no")) {
-				
+				scene4(con);
+				return;
 			}
 		} else if (intChoice == 2) {
 			scene3(con);
@@ -95,7 +96,14 @@ public class midterm {
 	}
 	private static void scene3(Console con) {
 		con.println("You return to the comfort of your home, empty-handed");
+		con.sleep(2000);
+		con.println("-THE END-");
+	}
+	private static void scene4(Console con) {
+		con.println("Offended, the guide leaves you to fend for yourself in your unfamiliar surroundings.");
 		con.sleep(1000);
+		con.println("Eventually, you starve to death.");
+		con.sleep(2000);
 		con.println("-THE END-");
 	}
 }
