@@ -25,10 +25,7 @@ public class midterm {
 
 		con.setTextFont(fntText);
 		scene1(con);
-		con.println("\n==============================================================");
-		con.println("Enter [1] to follow the path into the jungle.");
-		con.println("Enter [2] to return home.");
-		con.println("==============================================================\n");
+		con.println(formatInstructions("Enter [1] to follow the path into the jungle.", "Enter [2] to return home."));
 		intChoice = con.readInt();
 		// TODO: Input validation function that checks for errors as well
 		while (intChoice != 1 && intChoice != 2) {
@@ -38,26 +35,19 @@ public class midterm {
 		resetConsole(con, clrGreekVilla);
 		if (intChoice == 1) {
 			scene2(con);
-			con.println("\n==============================================================");
-			con.println("Enter [yes] if you want to provide the man your name.");
-			con.println("Enter [no] if you do not want to provide the man your name.");
-			con.println("==============================================================\n");
+			con.println(formatInstructions("Enter [yes] if you want to provide the man your name.", "Enter [no] if you do not want to provide the man your name."));
 			strChoice = con.readLine();
 			while (!strChoice.equalsIgnoreCase("yes") && !strChoice.equalsIgnoreCase("no")) {
 				con.println("Invalid choice. Please try again.");
 				strChoice = con.readLine();
 			}
 			if (strChoice.equalsIgnoreCase("yes")) {
-				con.println("\n==============================================================");
-				con.println("Enter your name:");
-				con.println("==============================================================\n");
+				con.println(formatInstructions("Enter your name:"));
 				strName = con.readLine();
 				resetConsole(con, clrGreekVilla);
 				
 				scene5(con, strName);
-				con.println("\n==============================================================");
-				con.println("Press any key to roll the dice.");
-				con.println("==============================================================\n");
+				con.println(formatInstructions("Press any key to roll the dice."));
 				con.getKey();
 				
 				intDice = rollDice();
@@ -86,6 +76,9 @@ public class midterm {
 		con.println("░░░██║░░░██║░░██║███████╗  ██║░░░░░╚██████╔╝███████╗███████╗███████╗███████╗  ╚█████╔╝╚██████╔╝██║░╚███║╚██████╔╝███████╗███████╗");
 		con.println("░░░╚═╝░░░╚═╝░░╚═╝╚══════╝  ╚═╝░░░░░░╚═════╝░╚══════╝╚══════╝╚══════╝╚══════╝  ░╚════╝░░╚═════╝░╚═╝░░╚══╝░╚═════╝░╚══════╝╚══════╝");
 		con.println("\n");
+	}
+	private static String formatInstructions(String... strInstructions) {
+		return "\n==============================================================\n" + String.join("\n", strInstructions) + "\n==============================================================\n";
 	}
 	private static int rollDice() {
 		int intDice = (int)(Math.random() * 6 + 1);
