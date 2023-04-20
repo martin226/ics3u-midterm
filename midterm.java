@@ -14,6 +14,7 @@ public class midterm {
 		
 		String strName;
 		int intDice;
+		double dblSolution;
 
 		resetConsole(con, clrGreekVilla);
 
@@ -52,6 +53,14 @@ public class midterm {
 				
 				intDice = rollDice();
 				con.println("You rolled a " + intDice + "!");
+				
+				if (1 <= intDice && intDice <= 3) {
+					scene6(con);
+					con.println(formatInstructions("What is the solution?"));
+					dblSolution = con.readDouble();
+				} else if (4 <= intDice && intDice <= 6) {
+					// Scene 7
+				}
 			} else if (strChoice.equalsIgnoreCase("no")) {
 				resetConsole(con, clrGreekVilla);
 				scene4(con);
@@ -127,5 +136,10 @@ public class midterm {
 		con.sleep(1500);
 		con.println("Confused, you turn to the guide, but he has disappeared.");
 		con.sleep(2000);
+	}
+	private static void scene6(Console con) {
+		con.println("Congratulations, you have rolled the easy question.");
+		con.sleep(1000);
+		con.println("Name the first 3 digits of pi to receive a diamond.");
 	}
 }
