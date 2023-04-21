@@ -93,6 +93,25 @@ public class midterm {
 		int intDice = (int)(Math.random() * 6 + 1);
 		return intDice;
 	}
+	private static void createTextbox(Console con, Color clrText, Color clrBox, Font fntText, String... strText) {
+		int intPointSize = fntText.getSize();
+		double dblPixelSize = intPointSize * (4.0 / 3.0); // 4/3 is the ratio of pixels to points
+		int intWidth = (int)(1280 * 3 / 4);  // 75% of screen width
+		int intHeight = 40 + (int)Math.ceil(dblPixelSize * strText.length); // 40 pixels for top and bottom padding, plus the height of the text
+		int intX = (int)(1280 / 2 - intWidth / 2); // Centered horizontally
+		int intY = (int)(720 * 2 / 3 - intHeight / 2); // Centered vertically
+		int intCount;
+		con.setDrawColor(clrBox);
+		con.setDrawFont(fntText);
+		con.fillRoundRect(intX, intY, intWidth, intHeight, 10, 10);
+		con.setDrawColor(clrText);
+		for (intCount = 0; intCount < strText.length; intCount++) {
+			// Draw text:
+			// 		15 pixels for left padding
+			// 		20 pixels for top padding (bottom padding is leftover from the height calculation)
+			con.drawString(strText[intCount], intX + 15, intY + 20 + (int)Math.ceil(dblPixelSize * intCount));
+		}
+	}
 	private static void scene1(Console con) {
 		// TODO: Add scene image
 		con.println("As you awaken, you find yourself in the heart of a dense jungle.");
