@@ -5,10 +5,10 @@ import java.awt.image.BufferedImage;
 
 public class midterm {
 	private static Console con = new Console("The Puzzle Jungle", 1280, 720);
-	private static Font fntTitle = con.loadFont("fonts/Cousine-Regular.ttf", 16);
 	private static Font fntText = con.loadFont("fonts/Cousine-Regular.ttf", 18);
 	private static Color clrGreekVilla = new Color(237, 234, 224);
-	private static Color clrSage = new Color(207,225,201);
+	private static Color clrSage = new Color(207,225,201,175);
+	private static Color clrTranslucent = new Color(0,0,0,50);
 
 	public static void main(String[] args) {
 		int intChoice;
@@ -18,17 +18,16 @@ public class midterm {
 		int intDice;
 		double dblSolution;
 
-		resetConsole(clrGreekVilla);
+		BufferedImage imgTitle = con.loadImage("img/title.png");
 
-		con.setTextFont(fntTitle);
-		printTitle();
-		con.println("Press any key to start...");
+		con.drawImage(imgTitle, 0, 0);
+		con.repaint();
 		con.getKey();
 		resetConsole(clrGreekVilla);
 
 		scene1();
 
-		createChoicebox("Enter your choice:");
+		createChoicebox("What would you like to do? (1/2):");
 		intChoice = con.readInt();
 
 		// TODO: Input validation function that checks for errors as well
@@ -80,15 +79,6 @@ public class midterm {
 		con.setDrawColor(clrBg);
 		con.fillRect(0,0,1280,720);
 	}
-	private static void printTitle() {
-		con.println("████████╗██╗░░██╗███████╗  ██████╗░██╗░░░██╗███████╗███████╗██╗░░░░░███████╗  ░░░░░██╗██╗░░░██╗███╗░░██╗░██████╗░██╗░░░░░███████╗");
-		con.println("╚══██╔══╝██║░░██║██╔════╝  ██╔══██╗██║░░░██║╚════██║╚════██║██║░░░░░██╔════╝  ░░░░░██║██║░░░██║████╗░██║██╔════╝░██║░░░░░██╔════╝");
-		con.println("░░░██║░░░███████║█████╗░░  ██████╔╝██║░░░██║░░███╔═╝░░███╔═╝██║░░░░░█████╗░░  ░░░░░██║██║░░░██║██╔██╗██║██║░░██╗░██║░░░░░█████╗░░");
-		con.println("░░░██║░░░██╔══██║██╔══╝░░  ██╔═══╝░██║░░░██║██╔══╝░░██╔══╝░░██║░░░░░██╔══╝░░  ██╗░░██║██║░░░██║██║╚████║██║░░╚██╗██║░░░░░██╔══╝░░");
-		con.println("░░░██║░░░██║░░██║███████╗  ██║░░░░░╚██████╔╝███████╗███████╗███████╗███████╗  ╚█████╔╝╚██████╔╝██║░╚███║╚██████╔╝███████╗███████╗");
-		con.println("░░░╚═╝░░░╚═╝░░╚═╝╚══════╝  ╚═╝░░░░░░╚═════╝░╚══════╝╚══════╝╚══════╝╚══════╝  ░╚════╝░░╚═════╝░╚═╝░░╚══╝░╚═════╝░╚══════╝╚══════╝");
-		con.println("\n");
-	}
 	private static String formatInstructions(String... strInstructions) {
 		return "\n==============================================================\n" + String.join("\n", strInstructions) + "\n==============================================================\n";
 	}
@@ -117,8 +107,8 @@ public class midterm {
 	}
 	private static void createChoicebox(String strPrompt) {
 		con.print(strPrompt + " ");
-		con.setDrawColor(clrGreekVilla);
-		con.setTextColor(Color.BLACK);
+		con.setDrawColor(clrTranslucent);
+		con.setTextColor(Color.WHITE);
 		con.fillRect(0, 0, 1280, 24); // 24 pix is the height of the text
 	}
 	private static void scene1() {
