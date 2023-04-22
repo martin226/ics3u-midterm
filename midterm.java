@@ -7,7 +7,8 @@ public class midterm {
 	private static Console con = new Console("The Puzzle Jungle", 1280, 720);
 	private static Font fntText = con.loadFont("fonts/Cousine-Regular.ttf", 18);
 	private static Color clrGreekVilla = new Color(237, 234, 224);
-	private static Color clrSage = new Color(207,225,201,175);
+	private static Color clrGreen = new Color(207,225,201,175);
+	private static Color clrYellow = new Color(237,194,88,175);
 	private static Color clrTranslucent = new Color(0,0,0,50);
 
 	public static void main(String[] args) {
@@ -27,25 +28,26 @@ public class midterm {
 
 		scene1();
 
-		createChoicebox("What would you like to do? (1/2):");
+		createChoicebox("What would you like to do? (1/2):", true);
 		intChoice = con.readInt();
 
 		// TODO: Input validation function that checks for errors as well
 		while (intChoice != 1 && intChoice != 2) {
-			con.println("Invalid choice. Please try again.");
+			createChoicebox("Invalid choice. What would you like to do? (1/2):", false);
 			intChoice = con.readInt();
 		}	
 		resetConsole(clrGreekVilla);
 		if (intChoice == 1) {
 			scene2();
-			con.println(formatInstructions("Enter [yes] if you want to provide the man your name.", "Enter [no] if you do not want to provide the man your name."));
+			
+			createChoicebox("Do you want to enter your name? (yes/no):", true);
 			strChoice = con.readLine();
 			while (!strChoice.equalsIgnoreCase("yes") && !strChoice.equalsIgnoreCase("no")) {
-				con.println("Invalid choice. Please try again.");
+				createChoicebox("Invalid choice. Do you want to enter your name? (yes/no):", false);
 				strChoice = con.readLine();
 			}
 			if (strChoice.equalsIgnoreCase("yes")) {
-				con.println(formatInstructions("Enter your name:"));
+				createChoicebox("Enter your name:", false); // don't draw the box since last one was not destroyed
 				strName = con.readLine();
 				resetConsole(clrGreekVilla);
 				
@@ -104,19 +106,25 @@ public class midterm {
 			// 		20 pixels for top padding (bottom padding is leftover from the height calculation)
 			con.drawString(strText[intCount], intX + 15, intY + 20 + (int)Math.ceil(dblPixelSize * intCount));
 		}
+		con.repaint();
 	}
-	private static void createChoicebox(String strPrompt) {
+	private static void createChoicebox(String strPrompt, boolean blnDrawBox) {
+		con.clear();
 		con.print(strPrompt + " ");
-		con.setDrawColor(clrTranslucent);
-		con.setTextColor(Color.WHITE);
-		con.fillRect(0, 0, 1280, 24); // 24 pix is the height of the text
+		if (blnDrawBox) {
+			con.setDrawColor(clrTranslucent);
+			con.setTextColor(Color.WHITE);
+			con.fillRect(0, 0, 1280, 24); // 24 pix is the height of the text
+			con.repaint();
+		}
 	}
 	private static void scene1() {
 		BufferedImage imgScene = con.loadImage("img/scene1.png");
 		con.drawImage(imgScene, 0, 0);
+		con.repaint();
 		createTextbox(
 			Color.BLACK, 
-			clrSage, 
+			clrGreen, 
 			fntText,
 			"As you awaken, you find yourself in the heart of a dense jungle. Ahead of you lies",
 			"a winding path that disappears into the distant horizon, beckoning you to follow",
@@ -134,10 +142,22 @@ public class midterm {
 		);
 	}
 	private static void scene2() {
-		con.println("As you walk down the path, a man emerges from the shadows.");
-		con.sleep(1000);
-		con.println("He introduces himself as a guide, and asks for your name.");
-		con.sleep(2000);
+		BufferedImage imgScene = con.loadImage("img/scene2.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		createTextbox(
+			Color.BLACK,
+			clrYellow,
+			fntText,
+			"You decide to follow the path into the jungle. As you walk, you notice that",
+			"the jungle is eerily quiet. You hear no birds, no insects, no animals. You",
+			"begin to wonder if you are alone in this strange place. Suddenly, you hear",
+			"a faint voice calling out to you from the shadows. A man emerges from the",
+			"trees, and introduces himself as a guide. He asks for your name.",
+			"",
+			"Enter [yes] if you want to provide the man your name.",
+			"Enter [no] if you want to remain anonymous."
+		);
 	}
 	private static void scene3() {
 		con.println("You return to the comfort of your home, empty-handed");
