@@ -69,6 +69,8 @@ public class midterm {
 			} else if (strChoice.equalsIgnoreCase("no")) {
 				resetConsole(clrGreekVilla);
 				scene4();
+				con.getKey();
+				con.closeConsole();
 				return;
 			}
 		} else if (intChoice == 2) {
@@ -176,11 +178,19 @@ public class midterm {
 		);
 	}
 	private static void scene4() {
-		con.println("Offended, the guide leaves you to fend for yourself in your unfamiliar surroundings.");
-		con.sleep(1000);
-		con.println("Eventually, you starve to death.");
-		con.sleep(2000);
-		con.println("\n-THE END-");
+		BufferedImage imgScene = con.loadImage("img/scene4.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		createTextbox(
+			Color.BLACK,
+			clrGreen,
+			fntText,
+			"You decide to remain anonymous. The guide is offended by your lack of trust,",
+			"and leaves you to fend for yourself in your unfamiliar surroundings. Eventually,",
+			"you starve to death. THE END.",
+			"",
+			"Press any key to exit."
+		);
 	}
 	private static void scene5(String strName) {
 		con.println("\"Welcome to the Puzzle Jungle, " + strName + "\", the man says.");
