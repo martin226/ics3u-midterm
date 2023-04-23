@@ -53,11 +53,10 @@ public class midterm {
 				resetConsole(clrGreekVilla);
 				
 				scene5(strName);
-				con.println(formatInstructions("Press any key to roll the dice."));
 				con.getKey();
 				
 				intDice = rollDice();
-				con.println("You rolled a " + intDice + "!");
+				createAlert(Color.BLACK, clrTan, 200, "You rolled a " + intDice + "!");
 				
 				if (1 <= intDice && intDice <= 3) {
 					scene6();
@@ -122,6 +121,14 @@ public class midterm {
 			con.fillRect(0, 0, 1280, 24); // 24 pix is the height of the text
 			con.repaint();
 		}
+	}
+	private static void createAlert(Color clrText, Color clrBox, int intWidth, String strAlert) {
+		con.clear();
+		con.setDrawColor(clrBox);
+		con.fillRoundRect(1280 - intWidth, 0, intWidth, 50, 10, 10);
+		con.setDrawColor(clrText);
+		con.drawString(strAlert, 1280 - intWidth + 10, 12);
+		con.repaint();
 	}
 	private static void scene1() {
 		BufferedImage imgScene = con.loadImage("img/scene1.png");
@@ -193,14 +200,23 @@ public class midterm {
 		);
 	}
 	private static void scene5(String strName) {
-		con.println("\"Welcome to the Puzzle Jungle, " + strName + "\", the man says.");
-		con.sleep(1000);
-		con.println("He takes you through the thick foliage of the jungle, and you arrive at a vault.");
-		con.sleep(1000);
-		con.println("Next to the vault door is a glass box with a dice inside, and a red button underneath labelled \"ROLL\".");
-		con.sleep(1500);
-		con.println("Confused, you turn to the guide, but he has disappeared.");
-		con.sleep(2000);
+		BufferedImage imgScene = con.loadImage("img/scene5.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		createTextbox(
+			Color.BLACK,
+			clrTan,
+			fntText,
+			"\"Welcome to the Puzzle Jungle, " + strName + "\", the man says.",
+			"",
+			"He takes you through the thick foliage of the jungle, and you arrive",
+			"at a vault. Next to the vault door is a glass box with a dice inside,",
+			"and a red button underneath labelled \"ROLL\". Confused, you turn to",
+			"the guide, but he has disappeared.",
+			"",
+			"Press any key to roll the dice."
+		);
+
 	}
 	private static void scene6() {
 		con.println("Congratulations, you have rolled the easy question.");
