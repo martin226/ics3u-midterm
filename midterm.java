@@ -9,6 +9,7 @@ public class midterm {
 	private static Color clrGreekVilla = new Color(237, 234, 224);
 	private static Color clrGreen = new Color(207,225,201,175);
 	private static Color clrYellow = new Color(237,194,88,175);
+	private static Color clrTan = new Color(199,143,107,175);
 	private static Color clrTranslucent = new Color(0,0,0,50);
 
 	public static void main(String[] args) {
@@ -72,6 +73,8 @@ public class midterm {
 			}
 		} else if (intChoice == 2) {
 			scene3();
+			con.getKey();
+			con.closeConsole();
 			return;
 		}
 	}
@@ -160,9 +163,17 @@ public class midterm {
 		);
 	}
 	private static void scene3() {
-		con.println("You return to the comfort of your home, empty-handed");
-		con.sleep(2000);
-		con.println("\n-THE END-");
+		BufferedImage imgScene = con.loadImage("img/scene3.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		createTextbox(
+			Color.BLACK,
+			clrTan,
+			fntText,
+			"You return to the comfort of your home, empty-handed. THE END.",
+			"",
+			"Press any key to exit."
+		);
 	}
 	private static void scene4() {
 		con.println("Offended, the guide leaves you to fend for yourself in your unfamiliar surroundings.");
