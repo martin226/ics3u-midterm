@@ -83,6 +83,21 @@ public class midterm {
 						return;
 					}
 				}
+
+				scene9();
+				createChoicebox("What would you like to do? (1/2):", true);
+				intChoice = con.readInt();
+
+				while (intChoice != 1 && intChoice != 2) {
+					createChoicebox("Invalid choice. What would you like to do? (1/2):", false);
+					intChoice = con.readInt();
+				}
+				resetConsole(clrGreekVilla);
+				if (intChoice == 1) {
+					// Scene 10
+				} else if (intChoice == 2) {
+					// Scene 13
+				}
 			} else if (strChoice.equalsIgnoreCase("no")) {
 				resetConsole(clrGreekVilla);
 				scene4();
@@ -147,6 +162,50 @@ public class midterm {
 		con.setDrawColor(clrText);
 		con.drawString(strAlert, 1280 - intWidth + 10, 12);
 		con.repaint();
+	}
+	private static void animateDiamonds(BufferedImage imgBg) {
+		// There will be 5 diamonds on the screen in the beginning
+		// Each will have their own x and y coordinates
+		// End when all diamonds are off the screen
+
+		BufferedImage imgDiamond = con.loadImage("img/diamond.png");
+		con.drawImage(imgDiamond, 0, 0);
+		int intSpeed = 10;
+		int intWidth = 1280;
+		int intHeight = 720;
+
+		// initialize the x coordinates of the diamonds
+		int intX1 = (int)(Math.random() * intWidth);
+		int intX2 = (int)(Math.random() * intWidth);
+		int intX3 = (int)(Math.random() * intWidth);
+		int intX4 = (int)(Math.random() * intWidth);
+		int intX5 = (int)(Math.random() * intWidth);
+
+		// space out the heights of the diamonds so they don't all appear at once
+		int intY1 = 0;
+		int intY2 = 144;
+		int intY3 = 288;
+		int intY4 = 432;
+		int intY5 = 576;
+
+		while (intY1 < intHeight || intY2 < intHeight || intY3 < intHeight || intY4 < intHeight || intY5 < intHeight) {
+			con.drawImage(imgBg, 0, 0);
+
+			con.drawImage(imgDiamond, intX1, intY1);
+			con.drawImage(imgDiamond, intX2, intY2);
+			con.drawImage(imgDiamond, intX3, intY3);
+			con.drawImage(imgDiamond, intX4, intY4);
+			con.drawImage(imgDiamond, intX5, intY5);
+
+			intY1 += intSpeed;
+			intY2 += intSpeed;
+			intY3 += intSpeed;
+			intY4 += intSpeed;
+			intY5 += intSpeed;
+
+			con.repaint();
+			con.sleep(33);
+		}
 	}
 	private static void scene1() {
 		BufferedImage imgScene = con.loadImage("img/scene1.png");
@@ -275,6 +334,23 @@ public class midterm {
 			"wall, piercing your heart. You die. THE END.",
 			"",
 			"Press any key to exit."
+		);
+	}
+	private static void scene9() {
+		BufferedImage imgScene = con.loadImage("img/scene9.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		animateDiamonds(imgScene);
+		createTextbox(
+			Color.BLACK,
+			clrTan,
+			fntText,
+			"The vault door swings open, revealing a room filled with gold and",
+			"a single, large diamond. Do you want to keep the diamond in the vault",
+			"for storage or take it with you?",
+			"",
+			"Enter [1] to keep the diamond in the vault.",
+			"Enter [2] to take the diamond with you."
 		);
 	}
 }
