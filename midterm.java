@@ -19,6 +19,7 @@ public class midterm {
 		String strName;
 		int intDice;
 		double dblSolution;
+		int intSolution;
 
 		BufferedImage imgTitle = con.loadImage("img/title.png");
 
@@ -63,10 +64,24 @@ public class midterm {
 					scene6();
 					createChoicebox("Enter your answer:", true);
 					dblSolution = con.readDouble();
+					resetConsole(clrGreekVilla);
+					if (dblSolution != 3.14) {
+						scene8();
+						con.getKey();
+						con.closeConsole();
+						return;
+					}
 				} else if (4 <= intDice && intDice <= 6) {
 					scene7();
 					createChoicebox("Enter your answer:", true);
-					dblSolution = con.readDouble();
+					intSolution = con.readInt();
+					resetConsole(clrGreekVilla);
+					if (intSolution <= 1000 || !perfectSquare(intSolution)) {
+						scene8();
+						con.getKey();
+						con.closeConsole();
+						return;
+					}
 				}
 			} else if (strChoice.equalsIgnoreCase("no")) {
 				resetConsole(clrGreekVilla);
@@ -91,6 +106,9 @@ public class midterm {
 	private static int rollDice() {
 		int intDice = (int)(Math.random() * 6 + 1);
 		return intDice;
+	}
+	private static boolean perfectSquare(int intNum) {
+		return Math.sqrt(intNum) % 1 == 0;
 	}
 	private static void createTextbox(Color clrText, Color clrBox, Font fntText, String... strText) {
 		int intPointSize = fntText.getSize();
@@ -243,6 +261,20 @@ public class midterm {
 			"",
 			"Give any number larger than 1,000 that has an odd number of",
 			"factors to receive a diamond."
+		);
+	}
+	private static void scene8() {
+		BufferedImage imgScene = con.loadImage("img/scene8.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		createTextbox(
+			Color.BLACK,
+			clrGreen,
+			fntText,
+			"Wrong answer! You trigger a trap and an arrow flies out of the",
+			"wall, piercing your heart. You die. THE END.",
+			"",
+			"Press any key to exit."
 		);
 	}
 }
