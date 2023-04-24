@@ -210,9 +210,9 @@ public class midterm {
 			"\"Welcome to the Puzzle Jungle, " + strName + "\", the man says.",
 			"",
 			"He takes you through the thick foliage of the jungle, and you arrive",
-			"at a vault. Next to the vault door is a glass box with a dice inside,",
-			"and a red button underneath labelled \"ROLL\". Confused, you turn to",
-			"the guide, but he has disappeared.",
+			"at a vault. Hanging next to the vault door is a giant dice and a red",
+			"button underneath labelled \"ROLL\". Confused, you turn to the guide,",
+			"but he has disappeared.",
 			"",
 			"Press any key to roll the dice."
 		);
