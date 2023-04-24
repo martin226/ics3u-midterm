@@ -280,7 +280,6 @@ public class midterm {
 		// There will be 3 arrows on the screen, starting from the right
 		// Each will have their own x and y coordinates
 		// End when all arrows reach the person
-
 		BufferedImage imgArrow = con.loadImage("img/arrow.png");
 		int intSpeed = 10;
 		int intWidth = 1280;
@@ -297,6 +296,7 @@ public class midterm {
 		int intY2 = (int)(Math.random() * 100) + 320;
 		int intY3 = (int)(Math.random() * 100) + 320;
 
+		// Loop until one of the arrows reaches the person
 		while (intX1 > intLocation && intX2 > intLocation && intX3 > intLocation) {
 			con.drawImage(imgScene, 0, 0);
 
@@ -331,27 +331,26 @@ public class midterm {
 		// There will be 5 diamonds on the screen in the beginning
 		// Each will have their own x and y coordinates
 		// End when all diamonds are off the screen
-
 		BufferedImage imgDiamond = con.loadImage("img/diamond.png");
-		con.drawImage(imgDiamond, 0, 0);
 		int intSpeed = 10;
 		int intWidth = 1280;
 		int intHeight = 720;
 
-		// initialize the x coordinates of the diamonds
+		// Initialize the x coordinates of the diamonds randomly
 		int intX1 = (int)(Math.random() * intWidth);
 		int intX2 = (int)(Math.random() * intWidth);
 		int intX3 = (int)(Math.random() * intWidth);
 		int intX4 = (int)(Math.random() * intWidth);
 		int intX5 = (int)(Math.random() * intWidth);
 
-		// space out the heights of the diamonds so they don't all appear at once
+		// Space out the heights of the diamonds so they don't all appear at once
 		int intY1 = 0;
 		int intY2 = 144;
 		int intY3 = 288;
 		int intY4 = 432;
 		int intY5 = 576;
 
+		// Loop until all diamonds are off the screen
 		while (intY1 < intHeight || intY2 < intHeight || intY3 < intHeight || intY4 < intHeight || intY5 < intHeight) {
 			con.drawImage(imgScene, 0, 0);
 
