@@ -64,7 +64,9 @@ public class midterm {
 					createChoicebox("Enter your answer:", true);
 					dblSolution = con.readDouble();
 				} else if (4 <= intDice && intDice <= 6) {
-					// Scene 7
+					scene7();
+					createChoicebox("Enter your answer:", true);
+					dblSolution = con.readDouble();
 				}
 			} else if (strChoice.equalsIgnoreCase("no")) {
 				resetConsole(clrGreekVilla);
@@ -227,6 +229,20 @@ public class midterm {
 			"Congratulations, you have rolled the easy question.",
 			"",
 			"Name the first 3 digits of pi to receive a diamond."
+		);
+	}
+	private static void scene7() {
+		BufferedImage imgScene = con.loadImage("img/scene7.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		createTextbox(
+			Color.BLACK,
+			clrTan,
+			fntText,
+			"You have rolled the hard question.",
+			"",
+			"Give any number larger than 1,000 that has an odd number of",
+			"factors to receive a diamond."
 		);
 	}
 }
