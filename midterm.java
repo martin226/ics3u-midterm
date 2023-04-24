@@ -57,10 +57,11 @@ public class midterm {
 				
 				intDice = rollDice();
 				createAlert(Color.BLACK, clrTan, 200, "You rolled a " + intDice + "!");
+				con.sleep(3000);
 				
 				if (1 <= intDice && intDice <= 3) {
 					scene6();
-					con.println(formatInstructions("What is the solution?"));
+					createChoicebox("Enter your answer:", true);
 					dblSolution = con.readDouble();
 				} else if (4 <= intDice && intDice <= 6) {
 					// Scene 7
@@ -84,9 +85,6 @@ public class midterm {
 		con.setTextColor(Color.BLACK);
 		con.setDrawColor(clrBg);
 		con.fillRect(0,0,1280,720);
-	}
-	private static String formatInstructions(String... strInstructions) {
-		return "\n==============================================================\n" + String.join("\n", strInstructions) + "\n==============================================================\n";
 	}
 	private static int rollDice() {
 		int intDice = (int)(Math.random() * 6 + 1);
@@ -219,8 +217,16 @@ public class midterm {
 
 	}
 	private static void scene6() {
-		con.println("Congratulations, you have rolled the easy question.");
-		con.sleep(1000);
-		con.println("Name the first 3 digits of pi to receive a diamond.");
+		BufferedImage imgScene = con.loadImage("img/scene6.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		createTextbox(
+			Color.BLACK,
+			clrTan,
+			fntText,
+			"Congratulations, you have rolled the easy question.",
+			"",
+			"Name the first 3 digits of pi to receive a diamond."
+		);
 	}
 }
