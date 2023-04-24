@@ -275,12 +275,49 @@ public class midterm {
 		BufferedImage imgScene = con.loadImage("img/scene8.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
+
+		/* Animation - arrows flying at person */
+		// There will be 3 arrows on the screen, starting from the right
+		// Each will have their own x and y coordinates
+		// End when all arrows reach the person
+
+		BufferedImage imgArrow = con.loadImage("img/arrow.png");
+		int intSpeed = 10;
+		int intWidth = 1280;
+		int intLocation = 500;
+		
+		// Initialize the x coordinates of the arrows randomly
+		// Allows for non-uniform strike
+		int intX1 = intWidth - (int)(Math.random() * 100);
+		int intX2 = intWidth - (int)(Math.random() * 100);
+		int intX3 = intWidth - (int)(Math.random() * 100);
+
+		// Range of 320-420
+		int intY1 = (int)(Math.random() * 100) + 320;
+		int intY2 = (int)(Math.random() * 100) + 320;
+		int intY3 = (int)(Math.random() * 100) + 320;
+
+		while (intX1 > intLocation && intX2 > intLocation && intX3 > intLocation) {
+			con.drawImage(imgScene, 0, 0);
+
+			con.drawImage(imgArrow, intX1, intY1);
+			con.drawImage(imgArrow, intX2, intY2);
+			con.drawImage(imgArrow, intX3, intY3);
+
+			intX1 -= intSpeed;
+			intX2 -= intSpeed;
+			intX3 -= intSpeed;
+
+			con.repaint();
+			con.sleep(33);
+		}
+
 		createTextbox(
 			Color.BLACK,
 			clrGreen,
 			fntText,
 			"Wrong answer! You trigger a trap and an arrow flies out of the",
-			"wall, piercing your heart. You die. THE END.",
+			"wall, piercing you. You die. THE END.",
 			"",
 			"Press any key to exit."
 		);
