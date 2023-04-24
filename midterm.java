@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 public class midterm {
 	private static Console con = new Console("The Puzzle Jungle", 1280, 720);
 	private static Font fntText = con.loadFont("fonts/Cousine-Regular.ttf", 18);
-	private static Color clrGreekVilla = new Color(237, 234, 224);
 	private static Color clrGreen = new Color(207,225,201,175);
 	private static Color clrYellow = new Color(237,194,88,175);
 	private static Color clrTan = new Color(199,143,107,175);
@@ -26,7 +25,7 @@ public class midterm {
 		con.drawImage(imgTitle, 0, 0);
 		con.repaint();
 		con.getKey();
-		resetConsole(clrGreekVilla);
+		con.clear();
 
 		scene1();
 
@@ -38,7 +37,7 @@ public class midterm {
 			createChoicebox("Invalid choice. What would you like to do? (1/2):", false);
 			intChoice = con.readInt();
 		}	
-		resetConsole(clrGreekVilla);
+		con.clear();
 		if (intChoice == 1) {
 			scene2();
 			
@@ -51,7 +50,7 @@ public class midterm {
 			if (strChoice.equalsIgnoreCase("yes")) {
 				createChoicebox("Enter your name:", false); // don't draw the box since last one was not destroyed
 				strName = con.readLine();
-				resetConsole(clrGreekVilla);
+				con.clear();
 				
 				scene5(strName);
 				con.getKey();
@@ -64,7 +63,7 @@ public class midterm {
 					scene6();
 					createChoicebox("Enter your answer:", true);
 					dblSolution = con.readDouble();
-					resetConsole(clrGreekVilla);
+					con.clear();
 					if (dblSolution != 3.14) {
 						scene8();
 						con.getKey();
@@ -75,7 +74,7 @@ public class midterm {
 					scene7();
 					createChoicebox("Enter your answer:", true);
 					intSolution = con.readInt();
-					resetConsole(clrGreekVilla);
+					con.clear();
 					if (intSolution <= 1000 || !perfectSquare(intSolution)) {
 						scene8();
 						con.getKey();
@@ -92,14 +91,14 @@ public class midterm {
 					createChoicebox("Invalid choice. What would you like to do? (1/2):", false);
 					intChoice = con.readInt();
 				}
-				resetConsole(clrGreekVilla);
+				con.clear();
 				if (intChoice == 1) {
 					// Scene 10
 				} else if (intChoice == 2) {
 					// Scene 13
 				}
 			} else if (strChoice.equalsIgnoreCase("no")) {
-				resetConsole(clrGreekVilla);
+				con.clear();
 				scene4();
 				con.getKey();
 				con.closeConsole();
@@ -111,12 +110,6 @@ public class midterm {
 			con.closeConsole();
 			return;
 		}
-	}
-	private static void resetConsole(Color clrBg) {
-		con.clear();
-		con.setTextColor(Color.BLACK);
-		con.setDrawColor(clrBg);
-		con.fillRect(0,0,1280,720);
 	}
 	private static int rollDice() {
 		int intDice = (int)(Math.random() * 6 + 1);
