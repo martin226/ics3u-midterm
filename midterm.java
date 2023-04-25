@@ -108,7 +108,10 @@ public class midterm {
 						con.closeConsole();
 						return;
 					} else if (dblVelocity > 7.07) {
-						// Scene 15
+						scene15();
+						con.getKey();
+						con.closeConsole();
+						return;
 					}
 				}
 			} else if (strChoice.equalsIgnoreCase("no")) {
@@ -462,6 +465,20 @@ public class midterm {
 			clrTan,
 			fntText,
 			"Too slow! The zombies catch up to you and eat you alive. You die. THE END.",
+			"",
+			"Press any key to exit."
+		);
+	}
+	private static void scene15() {
+		BufferedImage imgScene = con.loadImage("img/scene15.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		createTextbox(
+			Color.BLACK,
+			clrTan,
+			fntText,
+			"Too fast! You get tired and stop to rest in the middle of the way to shelter.",
+			"The zombies catch up to you and eat you alive. You die. THE END.",
 			"",
 			"Press any key to exit."
 		);
