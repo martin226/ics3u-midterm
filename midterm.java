@@ -25,6 +25,8 @@ public class midterm {
 		double dblSolution;
 		int intSolution;
 		double dblVelocity;
+		String strPassword;
+		boolean blnSecure;
 
 		BufferedImage imgTitle = con.loadImage("img/title.png");
 
@@ -99,7 +101,15 @@ public class midterm {
 				}
 				con.clear();
 				if (intChoice == 1) {
-					// Scene 10
+					scene10();
+					createChoicebox("Enter your password:", true);
+					strPassword = con.readLine();
+					blnSecure = passwordIsSecure(strPassword);
+					con.clear();
+					if (!blnSecure) {
+						// Scene 11
+					}
+					// Scene 12
 				} else if (intChoice == 2) {
 					scene13();
 					createChoicebox("Enter your answer:", true);
@@ -139,6 +149,31 @@ public class midterm {
 	}
 	private static boolean perfectSquare(int intNum) {
 		return Math.sqrt(intNum) % 1 == 0;
+	}
+	private static boolean passwordIsSecure(String strPassword) {
+		// A password is secure if it:
+		// - is at least 8 characters long
+		// - contains at least one uppercase letter
+		// - contains at least one lowercase letter
+		// - contains at least one number
+		// - contains at least one special character
+		boolean blnHasUppercase = false;
+		boolean blnHasLowercase = false;
+		boolean blnHasNumber = false;
+		boolean blnHasSpecial = false;
+		for (int intCount = 0; intCount < strPassword.length(); intCount++) {
+			char chrCurrent = strPassword.charAt(intCount);
+			if (Character.isUpperCase(chrCurrent)) {
+				blnHasUppercase = true;
+			} else if (Character.isLowerCase(chrCurrent)) {
+				blnHasLowercase = true;
+			} else if (Character.isDigit(chrCurrent)) {
+				blnHasNumber = true;
+			} else if (!Character.isLetterOrDigit(chrCurrent)) {
+				blnHasSpecial = true;
+			}
+		}
+		return strPassword.length() >= 8 && blnHasUppercase && blnHasLowercase && blnHasNumber && blnHasSpecial;
 	}
 	private static void createTextbox(Color clrText, Color clrBox, Font fntText, String... strText) {
 		int intPointSize = fntText.getSize();
@@ -402,6 +437,20 @@ public class midterm {
 			"",
 			"Enter [1] to keep the diamond in the vault.",
 			"Enter [2] to take the diamond with you."
+		);
+	}
+	private static void scene10() {
+		BufferedImage imgScene = con.loadImage("img/scene10.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		createTextbox(
+			Color.BLACK,
+			clrTan,
+			fntText,
+			"As you close the vault, a keyboard pops out of the outer wall. The sign's text changes to:",
+			"\"Choose a secure password for the vault.\"",
+			"",
+			"Enter a password for the vault. Make sure it is secure!"
 		);
 	}
 	private static void scene13() {
