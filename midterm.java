@@ -351,7 +351,7 @@ public class midterm {
 		BufferedImage imgDiamond = con.loadImage("img/diamond.png");
 		int intSpeed = 10;
 		int intWidth = 1280;
-		int intHeight = 720;
+		int intHeight = 720 + 54;
 
 		// Initialize the x coordinates of the diamonds randomly
 		int intX1 = (int)(Math.random() * intWidth);
