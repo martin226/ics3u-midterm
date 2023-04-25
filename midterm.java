@@ -99,6 +99,17 @@ public class midterm {
 					scene13();
 					createChoicebox("Enter your answer:", true);
 					dblVelocity = con.readDouble();
+					con.clear();
+					if (dblVelocity == 7.07) {
+						// Scene 16
+					} else if (dblVelocity < 7.07) {
+						scene14();
+						con.getKey();
+						con.closeConsole();
+						return;
+					} else if (dblVelocity > 7.07) {
+						// Scene 15
+					}
 				}
 			} else if (strChoice.equalsIgnoreCase("no")) {
 				con.clear();
@@ -440,6 +451,19 @@ public class midterm {
 			"What is the minimum velocity you need to run at in order to escape the zombies?",
 			"Assume the zombies start from rest and that you can run at a constant velocity.",
 			"Provide your answer to 2 decimal places."
+		);
+	}
+	private static void scene14() {
+		BufferedImage imgScene = con.loadImage("img/scene14.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		createTextbox(
+			Color.BLACK,
+			clrTan,
+			fntText,
+			"Too slow! The zombies catch up to you and eat you alive. You die. THE END.",
+			"",
+			"Press any key to exit."
 		);
 	}
 }
