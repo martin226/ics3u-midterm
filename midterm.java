@@ -19,6 +19,7 @@ public class midterm {
 		int intDice;
 		double dblSolution;
 		int intSolution;
+		double dblVelocity;
 
 		BufferedImage imgTitle = con.loadImage("img/title.png");
 
@@ -95,7 +96,9 @@ public class midterm {
 				if (intChoice == 1) {
 					// Scene 10
 				} else if (intChoice == 2) {
-					// Scene 13
+					scene13();
+					createChoicebox("Enter your answer:", true);
+					dblVelocity = con.readDouble();
 				}
 			} else if (strChoice.equalsIgnoreCase("no")) {
 				con.clear();
@@ -380,6 +383,63 @@ public class midterm {
 			"",
 			"Enter [1] to keep the diamond in the vault.",
 			"Enter [2] to take the diamond with you."
+		);
+	}
+	private static void scene13() {
+		BufferedImage imgScene = con.loadImage("img/scene13.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+
+		/* Animation - zombies chasing person */
+		// There will be 3 zombies on the screen, starting from the right
+		// Each will have their own x and y coordinates
+		// End when one zombie reaches the middle of the screen
+		// The zombies start from the same cluster and accelerate at 1 pixel per frame squared
+		BufferedImage imgZombie = con.loadImage("img/zombie.png");
+		int intAcceleration = 1;
+		int intSpeed = 0;
+		int intWidth = 1280;
+		int intLocation = intWidth / 2;
+		
+		// Initialize the x coordinates of the zombies randomly between 1000 and 1280
+		int intX1 = (int)(Math.random() * 280) + 1000;
+		int intX2 = (int)(Math.random() * 280) + 1000;
+		int intX3 = (int)(Math.random() * 280) + 1000;
+
+		// Initialize the y coordinates of the zombies randomly between 180 and 280
+		int intY1 = (int)(Math.random() * 100) + 180;
+		int intY2 = (int)(Math.random() * 100) + 180;
+		int intY3 = (int)(Math.random() * 100) + 180;
+
+		// Loop until one of the zombies reaches the middle of the screen
+		while (intX1 > intLocation && intX2 > intLocation && intX3 > intLocation) {
+			con.drawImage(imgScene, 0, 0);
+
+			con.drawImage(imgZombie, intX1, intY1);
+			con.drawImage(imgZombie, intX2, intY2);
+			con.drawImage(imgZombie, intX3, intY3);
+
+			intSpeed += intAcceleration;
+
+			intX1 -= intSpeed;
+			intX2 -= intSpeed;
+			intX3 -= intSpeed;
+
+			con.repaint();
+			con.sleep(33);
+		}
+
+		createTextbox(
+			Color.BLACK,
+			clrGreen,
+			fntText,
+			"As you close the vault door, you hear a loud moan. You turn around",
+			"and see three zombies running towards you at a constant acceleration of 1 m/s^2.",
+			"Desperate, you look around your surroundings and seem to see shelter 100 m away.",
+			"",
+			"What is the minimum velocity you need to run at in order to escape the zombies?",
+			"Assume the zombies start from rest and that you can run at a constant velocity.",
+			"Provide your answer to 2 decimal places."
 		);
 	}
 }
