@@ -107,7 +107,10 @@ public class midterm {
 					blnSecure = passwordIsSecure(strPassword);
 					con.clear();
 					if (!blnSecure) {
-						// Scene 11
+						scene11();
+						con.getKey();
+						con.closeConsole();
+						return;
 					}
 					// Scene 12
 				} else if (intChoice == 2) {
@@ -451,6 +454,21 @@ public class midterm {
 			"\"Choose a secure password for the vault.\"",
 			"",
 			"Enter a password for the vault. Make sure it is secure!"
+		);
+	}
+	private static void scene11() {
+		BufferedImage imgScene = con.loadImage("img/scene11.png");
+		con.drawImage(imgScene, 0, 0);
+		con.repaint();
+		createTextbox(
+			Color.BLACK,
+			clrTan,
+			fntText,
+			"Your password wasn't secure enough! You find out later that your vault has been",
+			"robbed and your precious diamond has been stolen. You lose morale and motivation to",
+			"continue your journey. You die. THE END.",
+			"",
+			"Press any key to exit."
 		);
 	}
 	private static void scene13() {
