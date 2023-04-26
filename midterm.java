@@ -112,7 +112,10 @@ public class midterm {
 						con.closeConsole();
 						return;
 					}
-					// Scene 12
+					scene12();
+					con.getKey();
+					con.closeConsole();
+					return;
 				} else if (intChoice == 2) {
 					scene13();
 					createChoicebox("Enter your answer:", true);
@@ -467,6 +470,37 @@ public class midterm {
 			"Your password wasn't secure enough! You find out later that your vault has been",
 			"robbed and your precious diamond has been stolen. You lose morale and motivation to",
 			"continue your journey. You die. THE END.",
+			"",
+			"Press any key to exit."
+		);
+	}
+	private static void scene12() {
+		/* Animation - sliding images */
+		// Start with imgScene1 and slide it to the left while imgScene2 slides in from the right
+		BufferedImage imgScene1 = con.loadImage("img/scene12_pt1.png");
+		BufferedImage imgScene2 = con.loadImage("img/scene12_pt2.png");
+		int intCount;
+		int intWidth = 1280;
+		int intSpeed = 40; // factor of 1280
+
+		con.drawImage(imgScene1, 0, 0);
+		con.repaint();
+		con.sleep(1000);
+
+		for (intCount = 0; intCount <= intWidth; intCount += intSpeed) {
+			con.drawImage(imgScene1, -intCount, 0);
+			con.drawImage(imgScene2, intWidth - intCount, 0);
+			con.repaint();
+			con.sleep(33);
+		}
+		// You continue on your journey, gathering various treasures and seeing breathtaking sights along the way. Then, you make your way back to the portal and return home with all your newfound riches.
+		createTextbox(
+			Color.BLACK,
+			clrGreen,
+			fntText,
+			"You continue on your journey, gathering various treasures and seeing",
+			"breathtaking sights along the way. Then, you make your way back to the portal", 
+			"and return home with all your newfound riches. THE END.",
 			"",
 			"Press any key to exit."
 		);
