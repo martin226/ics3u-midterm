@@ -494,7 +494,9 @@ public class midterm {
 			con.repaint();
 			con.sleep(33);
 		}
-		// You continue on your journey, gathering various treasures and seeing breathtaking sights along the way. Then, you make your way back to the portal and return home with all your newfound riches.
+
+		animateDiamonds(imgScene2);
+
 		createTextbox(
 			Color.BLACK,
 			clrGreen,
