@@ -32,7 +32,7 @@ public class midterm {
 
 		con.drawImage(imgTitle, 0, 0);
 		con.repaint();
-		con.getKey();
+		con.getChar();
 		con.clear();
 
 		scene1();
@@ -67,7 +67,7 @@ public class midterm {
 				con.clear();
 				
 				scene5(strName);
-				con.getKey();
+				con.getChar();
 				
 				intDice = rollDice();
 				createAlert(Color.BLACK, clrTan, 200, "You rolled a " + intDice + "!");
@@ -83,7 +83,7 @@ public class midterm {
 					// Eliminates all numbers that are not the correct answer, 3.14
 					if (dblSolution != 3.14) {
 						scene8();
-						con.getKey();
+						con.getChar();
 						con.closeConsole();
 						return;
 					}
@@ -100,7 +100,7 @@ public class midterm {
 					// and all non-perfect squares
 					if (intSolution <= 1000 || !perfectSquare(intSolution)) {
 						scene8();
-						con.getKey();
+						con.getChar();
 						con.closeConsole();
 						return;
 					}
@@ -133,7 +133,7 @@ public class midterm {
 					} else {
 						scene12();
 					}
-					con.getKey();
+					con.getChar();
 					con.closeConsole();
 					return;
 
@@ -154,7 +154,7 @@ public class midterm {
 					} else if (dblVelocity > 7.07) { // Too fast
 						scene15();
 					}
-					con.getKey();
+					con.getChar();
 					con.closeConsole();
 					return;
 				}
@@ -163,7 +163,7 @@ public class midterm {
 			} else if (strChoice.equalsIgnoreCase("no")) {
 				con.clear();
 				scene4();
-				con.getKey();
+				con.getChar();
 				con.closeConsole();
 				return;
 			}
@@ -171,7 +171,7 @@ public class midterm {
 		// If the user chooses to exit the game
 		} else if (intChoice == 2) {
 			scene3();
-			con.getKey();
+			con.getChar();
 			con.closeConsole();
 			return;
 		}
