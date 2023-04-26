@@ -108,11 +108,9 @@ public class midterm {
 					con.clear();
 					if (!blnSecure) {
 						scene11();
-						con.getKey();
-						con.closeConsole();
-						return;
+					} else {
+						scene12();
 					}
-					scene12();
 					con.getKey();
 					con.closeConsole();
 					return;
@@ -123,20 +121,14 @@ public class midterm {
 					con.clear();
 					if (dblVelocity == 7.07) {
 						scene16();
-						con.getKey();
-						con.closeConsole();
-						return;
 					} else if (dblVelocity < 7.07) {
 						scene14();
-						con.getKey();
-						con.closeConsole();
-						return;
 					} else if (dblVelocity > 7.07) {
 						scene15();
-						con.getKey();
-						con.closeConsole();
-						return;
 					}
+					con.getKey();
+					con.closeConsole();
+					return;
 				}
 			} else if (strChoice.equalsIgnoreCase("no")) {
 				con.clear();
