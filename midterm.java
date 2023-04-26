@@ -122,7 +122,10 @@ public class midterm {
 					dblVelocity = con.readDouble();
 					con.clear();
 					if (dblVelocity == 7.07) {
-						// Scene 16
+						scene16();
+						con.getKey();
+						con.closeConsole();
+						return;
 					} else if (dblVelocity < 7.07) {
 						scene14();
 						con.getKey();
@@ -259,6 +262,24 @@ public class midterm {
 			intY4 += intSpeed;
 			intY5 += intSpeed;
 
+			con.repaint();
+			con.sleep(33);
+		}
+	}
+	private static void animateSliding(BufferedImage imgScene1, BufferedImage imgScene2) {
+		/* Animation - sliding images */
+		// Start with imgScene1 and slide it to the left while imgScene2 slides in from the right
+		int intCount;
+		int intWidth = 1280;
+		int intSpeed = 40; // factor of 1280
+
+		con.drawImage(imgScene1, 0, 0);
+		con.repaint();
+		con.sleep(1000);
+
+		for (intCount = 0; intCount <= intWidth; intCount += intSpeed) {
+			con.drawImage(imgScene1, -intCount, 0);
+			con.drawImage(imgScene2, intWidth - intCount, 0);
 			con.repaint();
 			con.sleep(33);
 		}
@@ -476,25 +497,10 @@ public class midterm {
 		);
 	}
 	private static void scene12() {
-		/* Animation - sliding images */
-		// Start with imgScene1 and slide it to the left while imgScene2 slides in from the right
 		BufferedImage imgScene1 = con.loadImage("img/scene12_pt1.png");
 		BufferedImage imgScene2 = con.loadImage("img/scene12_pt2.png");
-		int intCount;
-		int intWidth = 1280;
-		int intSpeed = 40; // factor of 1280
 
-		con.drawImage(imgScene1, 0, 0);
-		con.repaint();
-		con.sleep(1000);
-
-		for (intCount = 0; intCount <= intWidth; intCount += intSpeed) {
-			con.drawImage(imgScene1, -intCount, 0);
-			con.drawImage(imgScene2, intWidth - intCount, 0);
-			con.repaint();
-			con.sleep(33);
-		}
-
+		animateSliding(imgScene1, imgScene2);
 		animateDiamonds(imgScene2);
 
 		createTextbox(
@@ -588,6 +594,24 @@ public class midterm {
 			fntText,
 			"Too fast! You get tired and stop to rest in the middle of the way to shelter.",
 			"The zombies catch up to you and eat you alive. You die. THE END.",
+			"",
+			"Press any key to exit."
+		);
+	}
+	private static void scene16() {
+		BufferedImage imgScene1 = con.loadImage("img/scene16_pt1.png");
+		BufferedImage imgScene2 = con.loadImage("img/scene16_pt2.png");
+
+		animateSliding(imgScene1, imgScene2);
+		animateDiamonds(imgScene2);
+
+		createTextbox(
+			Color.BLACK,
+			clrGreen,
+			fntText,
+			"You reach shelter safely. You stay there for a few hours, making",
+			"sure that all the zombies have left. Then, you make your way back to the", 
+			"portal and return home with your diamond. THE END.",
 			"",
 			"Press any key to exit."
 		);
