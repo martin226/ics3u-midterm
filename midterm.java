@@ -40,21 +40,27 @@ public class midterm {
 		createChoicebox("What would you like to do? (1/2):", true);
 		intChoice = con.readInt();
 
-		// TODO: Input validation function that checks for errors as well
+		// Validate input
 		while (intChoice != 1 && intChoice != 2) {
 			createChoicebox("Invalid choice. What would you like to do? (1/2):", false);
 			intChoice = con.readInt();
 		}	
 		con.clear();
+
+		// If the user chooses to play the game
 		if (intChoice == 1) {
 			scene2();
 			
 			createChoicebox("Do you want to enter your name? (yes/no):", true);
 			strChoice = con.readLine();
+
+			// Validate input
 			while (!strChoice.equalsIgnoreCase("yes") && !strChoice.equalsIgnoreCase("no")) {
 				createChoicebox("Invalid choice. Do you want to enter your name? (yes/no):", false);
 				strChoice = con.readLine();
 			}
+
+			// If the user chooses to enter their name
 			if (strChoice.equalsIgnoreCase("yes")) {
 				createChoicebox("Enter your name:", false); // don't draw the box since last one was not destroyed
 				strName = con.readLine();
@@ -67,22 +73,31 @@ public class midterm {
 				createAlert(Color.BLACK, clrTan, 200, "You rolled a " + intDice + "!");
 				con.sleep(3000);
 				
+				// If the user rolls a 1, 2, or 3
 				if (1 <= intDice && intDice <= 3) {
 					scene6();
 					createChoicebox("Enter your answer:", true);
 					dblSolution = con.readDouble();
 					con.clear();
+
+					// Eliminates all numbers that are not the correct answer, 3.14
 					if (dblSolution != 3.14) {
 						scene8();
 						con.getKey();
 						con.closeConsole();
 						return;
 					}
+
+				// If the user rolls a 4, 5, or 6
 				} else if (4 <= intDice && intDice <= 6) {
 					scene7();
 					createChoicebox("Enter your answer:", true);
 					intSolution = con.readInt();
 					con.clear();
+
+					// A number has an odd number of factors if it is a perfect square (since the square root is a factor)
+					// This if statement eliminates all numbers less than or equal to 1000
+					// and all non-perfect squares
 					if (intSolution <= 1000 || !perfectSquare(intSolution)) {
 						scene8();
 						con.getKey();
@@ -95,41 +110,56 @@ public class midterm {
 				createChoicebox("What would you like to do? (1/2):", true);
 				intChoice = con.readInt();
 
+				// Validate input
 				while (intChoice != 1 && intChoice != 2) {
 					createChoicebox("Invalid choice. What would you like to do? (1/2):", false);
 					intChoice = con.readInt();
 				}
 				con.clear();
+
+				// If the user chooses to store the diamond in the vault
 				if (intChoice == 1) {
 					scene10();
 					createChoicebox("Enter your password:", true);
 					strPassword = con.readLine();
 					blnSecure = passwordIsSecure(strPassword);
 					con.clear();
+
+					// If the password is not secure, the user loses the game
 					if (!blnSecure) {
 						scene11();
+
+					// If the password is secure, the user wins the game
 					} else {
 						scene12();
 					}
 					con.getKey();
 					con.closeConsole();
 					return;
+
+				// If the user chooses to carry the diamond
 				} else if (intChoice == 2) {
 					scene13();
 					createChoicebox("Enter your answer:", true);
 					dblVelocity = con.readDouble();
 					con.clear();
+
+					// If the user enters the correct velocity, they win the game
 					if (dblVelocity == 7.07) {
 						scene16();
-					} else if (dblVelocity < 7.07) {
+
+					// If the user enters an incorrect velocity, they lose the game
+					} else if (dblVelocity < 7.07) { // Too slow
 						scene14();
-					} else if (dblVelocity > 7.07) {
+					} else if (dblVelocity > 7.07) { // Too fast
 						scene15();
 					}
 					con.getKey();
 					con.closeConsole();
 					return;
 				}
+
+			// If the user chooses not to enter their name
 			} else if (strChoice.equalsIgnoreCase("no")) {
 				con.clear();
 				scene4();
@@ -137,6 +167,8 @@ public class midterm {
 				con.closeConsole();
 				return;
 			}
+		
+		// If the user chooses to exit the game
 		} else if (intChoice == 2) {
 			scene3();
 			con.getKey();
@@ -149,6 +181,7 @@ public class midterm {
 		return intDice;
 	}
 	private static boolean perfectSquare(int intNum) {
+		// A number is a perfect square if its square root is an integer
 		return Math.sqrt(intNum) % 1 == 0;
 	}
 	private static boolean passwordIsSecure(String strPassword) {
@@ -164,19 +197,21 @@ public class midterm {
 		boolean blnHasSpecial = false;
 		for (int intCount = 0; intCount < strPassword.length(); intCount++) {
 			char chrCurrent = strPassword.charAt(intCount);
-			if (Character.isUpperCase(chrCurrent)) {
+			if (Character.isUpperCase(chrCurrent)) { // If the current character is uppercase
 				blnHasUppercase = true;
-			} else if (Character.isLowerCase(chrCurrent)) {
+			} else if (Character.isLowerCase(chrCurrent)) { // If the current character is lowercase
 				blnHasLowercase = true;
-			} else if (Character.isDigit(chrCurrent)) {
+			} else if (Character.isDigit(chrCurrent)) { // If the current character is a number
 				blnHasNumber = true;
-			} else if (!Character.isLetterOrDigit(chrCurrent)) {
+			} else if (!Character.isLetterOrDigit(chrCurrent)) { // If the current character is a special character
 				blnHasSpecial = true;
 			}
 		}
 		return strPassword.length() >= 8 && blnHasUppercase && blnHasLowercase && blnHasNumber && blnHasSpecial;
 	}
 	private static void createTextbox(Color clrText, Color clrBox, Font fntText, String... strText) {
+		// Draws a textbox with the specified text
+		// Calculates the size of the textbox based on the length of the text
 		int intPointSize = fntText.getSize();
 		double dblPixelSize = intPointSize * (4.0 / 3.0); // 4/3 is the ratio of pixels to points
 		int intWidth = (int)(1280 * 3 / 4);  // 75% of screen width
@@ -197,9 +232,10 @@ public class midterm {
 		con.repaint();
 	}
 	private static void createChoicebox(String strPrompt, boolean blnDrawBox) {
+		// Draws a choicebox with the specified prompt
 		con.clear();
 		con.print(strPrompt + " ");
-		if (blnDrawBox) {
+		if (blnDrawBox) { // If the choicebox should be drawn
 			con.setDrawColor(clrTranslucent);
 			con.setTextColor(Color.WHITE);
 			con.fillRect(0, 0, 1280, 24); // 24 pix is the height of the text
@@ -207,6 +243,7 @@ public class midterm {
 		}
 	}
 	private static void createAlert(Color clrText, Color clrBox, int intWidth, String strAlert) {
+		// Draws an alert with the specified text
 		con.clear();
 		con.setDrawColor(clrBox);
 		con.fillRoundRect(1280 - intWidth, 0, intWidth, 50, 10, 10);
@@ -277,6 +314,7 @@ public class midterm {
 		}
 	}
 	private static void scene1() {
+		// Scene 1 - Introduction
 		BufferedImage imgScene = con.loadImage("img/scene1.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -300,6 +338,7 @@ public class midterm {
 		);
 	}
 	private static void scene2() {
+		// Scene 2 - The Guide
 		BufferedImage imgScene = con.loadImage("img/scene2.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -318,6 +357,7 @@ public class midterm {
 		);
 	}
 	private static void scene3() {
+		// Scene 3 - Return Home
 		BufferedImage imgScene = con.loadImage("img/scene3.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -331,6 +371,7 @@ public class midterm {
 		);
 	}
 	private static void scene4() {
+		// Scene 4 - Anonymity
 		BufferedImage imgScene = con.loadImage("img/scene4.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -346,6 +387,7 @@ public class midterm {
 		);
 	}
 	private static void scene5(String strName) {
+		// Scene 5 - The Vault and the Dice
 		BufferedImage imgScene = con.loadImage("img/scene5.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -365,6 +407,7 @@ public class midterm {
 
 	}
 	private static void scene6() {
+		// Scene 6 - Easy Question
 		BufferedImage imgScene = con.loadImage("img/scene6.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -378,6 +421,7 @@ public class midterm {
 		);
 	}
 	private static void scene7() {
+		// Scene 7 - Hard Question
 		BufferedImage imgScene = con.loadImage("img/scene7.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -392,6 +436,7 @@ public class midterm {
 		);
 	}
 	private static void scene8() {
+		// Scene 8 - Vault Trap
 		BufferedImage imgScene = con.loadImage("img/scene8.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -443,6 +488,7 @@ public class midterm {
 		);
 	}
 	private static void scene9() {
+		// Scene 9 - Treasure of the Jungle
 		BufferedImage imgScene = con.loadImage("img/scene9.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -460,6 +506,7 @@ public class midterm {
 		);
 	}
 	private static void scene10() {
+		// Scene 10 - Vault Password
 		BufferedImage imgScene = con.loadImage("img/scene10.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -474,6 +521,7 @@ public class midterm {
 		);
 	}
 	private static void scene11() {
+		// Scene 11 - Bad Password
 		BufferedImage imgScene = con.loadImage("img/scene11.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -489,6 +537,7 @@ public class midterm {
 		);
 	}
 	private static void scene12() {
+		// Scene 12 - Good Password
 		BufferedImage imgScene1 = con.loadImage("img/scene12_pt1.png");
 		BufferedImage imgScene2 = con.loadImage("img/scene12_pt2.png");
 
@@ -507,6 +556,7 @@ public class midterm {
 		);
 	}
 	private static void scene13() {
+		// Scene 13 - Zombies
 		BufferedImage imgScene = con.loadImage("img/scene13.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -564,6 +614,7 @@ public class midterm {
 		);
 	}
 	private static void scene14() {
+		// Scene 14 - Too Slow
 		BufferedImage imgScene = con.loadImage("img/scene14.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -577,6 +628,7 @@ public class midterm {
 		);
 	}
 	private static void scene15() {
+		// Scene 15 - Too Fast
 		BufferedImage imgScene = con.loadImage("img/scene15.png");
 		con.drawImage(imgScene, 0, 0);
 		con.repaint();
@@ -591,6 +643,7 @@ public class midterm {
 		);
 	}
 	private static void scene16() {
+		// Scene 16 - Correct Velocity
 		BufferedImage imgScene1 = con.loadImage("img/scene16_pt1.png");
 		BufferedImage imgScene2 = con.loadImage("img/scene16_pt2.png");
 
